@@ -1,4 +1,4 @@
-use rust_async_book_examples::variab;
+// use rust_async_book_examples::variab;
 
 fn fibonaci(n: i32) -> i32 {
 	if n <= 1 {
