@@ -12,9 +12,9 @@ struct Response {
 
 async fn fetch_data(senconds: u64) -> Result<Response, Error> {
 	let request_url = format!("https://httpbin.org/delay/{}", senconds);
-	let response: reqwest::Response = reqwest::get(&request_url).await?;
+	let response = reqwest::get(&request_url).await?;
 
-	let delay_response: Response = response.json().await?;
+	let delay_response = response.json().await?;
 
 	Ok(delay_response)
 }

@@ -1,11 +1,11 @@
 use std::path::PathBuf;
-use tokio::fs::File as AsyncFile;
+use tokio::fs::File;
 use tokio::io::AsyncReadExt;
 use tokio::sync::watch;
 use tokio::time::{sleep, Duration};
 
 async fn read_file(filename: &str) -> Result<String, std::io::Error> {
-	let mut file = AsyncFile::open(filename).await?;
+	let mut file = File::open(filename).await?;
 	let mut contents = String::new();
 	file.read_to_string(&mut contents).await?;
 	Ok(contents)

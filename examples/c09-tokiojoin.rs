@@ -9,6 +9,7 @@ async fn my_task(task_name: &str, delay_ms: u64) {
 #[tokio::main]
 async fn main() {
 	// Using tokio::join! for concurrency
+	// and futures and joinHandle
 	tokio::join!(
 		my_task("Task 1", 200),
 		my_task("Task 2", 150),
@@ -17,7 +18,8 @@ async fn main() {
 	println!("All tasks finished (tokio::join!)");
 
 	// Using tokio::task::spawn for independent tasks
-	let task_handle1 = tokio::task::spawn(my_task("Task A", 100));
+	let task_handle1: task::JoinHandle<()> =
+		tokio::task::spawn(my_task("Task A", 100));
 	let task_handle2 = tokio::task::spawn(my_task("Task B", 50));
 
 	// You can await handles independently, or not at all
