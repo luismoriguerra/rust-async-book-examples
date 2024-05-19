@@ -27,13 +27,6 @@ where
 	F: Future<Output = T> + Send + 'static + FutureOrderLabel,
 	T: Send + 'static,
 {
-	// let schedule = |runnable| QUEUE.send(runnable).unwrap();
-	// let (runnable, task) = async_task::spawn(future, schedule);
-
-	// runnable.schedule();
-	// println!("Here is the queue count: {:?}", QUEUE.len());
-	// return task;
-
 	let schedule_high = |runnable| HIGH_QUEUE.send(runnable).unwrap();
 	let schedule_low = |runnable| LOW_QUEUE.send(runnable).unwrap();
 
